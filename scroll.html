@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>带停顿的消息滚动 - 每次移动一行</title>
+    <style type="text/css">
+        .demo ul{ width:300px;/* height:30px;*/ height:90px; padding:0 20px; border:#e1e1e1 solid 1px; overflow:hidden;}
+        .demo li{ width:300px; height:30px; line-height:30px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis;}
+    </style>
+    <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+</head>
+
+<body>
+
+<div class="demo">
+    <ul>
+        <li>一、 消息文字消息文字消息文字</li>
+        <li>二、 消息文字消息文字消息文字</li>
+        <li>三、 消息文字消息文字消息文字</li>
+        <li>四、 消息文字消息文字消息文字</li>
+        <li>五、 消息文字消息文字消息文字</li>
+        <li>六、 消息文字消息文字消息文字</li>
+    </ul>
+</div>
+<script type="text/javascript">
+    var lH = $('.demo li').height();
+    setInterval(function(){
+        $('.demo li').eq(0).animate({marginTop:-lH,opacity:0},'slow',function(){
+            $('.demo li').eq(0).css('margin-top','').appendTo('.demo ul').animate({opacity:1});
+        });
+    },3000);
+</script>
+</body>
+</html>

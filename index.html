@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>jQuery数字滚动增加动画特效-无停顿</title>
+<style>
+#all{
+	width: 100%;
+	margin: 0 auto;
+	background: #ffffff;
+}
+#all .t_num i {
+	width: 33px;
+	height: 47px;
+	display: inline-block;
+	background: url(img/number1.png) no-repeat;
+	background-position: 0 0;
+}
+/*#express li{*/
+	/*width: 25px;*/
+	/*list-style: none;*/
+	/*word-wrap: break-word*/
+/*}*/
+</style>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/digitalScroll.js"></script>
+<script type="text/javascript">
+var sum = 13000;
+$(function() {
+	setInterval(function(){
+		show_num1(sum)
+	},1000);
+});
+
+function show_num1(n) {
+	sum=sum+1;
+	console.log(n);
+	var it = $(".t_num1 i");
+	var len = String(n).length;
+	for(var i = 0; i < len; i++) {
+		if(it.length <= i) {
+			$(".t_num1").append("<i></i>");
+		}
+		var num = String(n).charAt(i);
+		//根据数字图片的高度设置相应的值
+		var y = -parseInt(num) * 58;
+		var obj = $(".t_num1 i").eq(i);
+		obj.animate({
+			backgroundPosition: '(0 ' + String(y) + 'px)'
+		}, 'slow', 'swing', function() {});
+	}
+	$("#cur_num").val(n);
+}
+</script>
+</head>
+
+<!--<body><script src="/demos/googlegg.js"></script>-->
+
+<div id="all">
+	<span class="t_num t_num1"></span>
+</div>
+
+
+<ul id="express">
+	<li>1・2010考研英语大纲到货75折...</li>
+	<li>2・权威定本四大名著（人民文...</li>
+	<li>3・口述历史权威唐德刚先生国...</li>
+	<li>4・袁伟民与体坛风云：实话实...</li>
+	<li>5・我们台湾这些年：轰动两岸...</li>
+	<li>6・畅销教辅推荐：精品套书50...</li>
+	<li>7・2010版法律硕士联考大纲75...</li>
+	<li>8・计算机新书畅销书75折抢购</li>
+	<li>9・2009年孩子最喜欢的书&gt;&gt;</li>
+	<li>10・弗洛伊德作品精选集59折</li>
+	<li>11・2010考研英语大纲到货75折...</li>
+	<li>12・权威定本四大名著（人民文...</li>
+	<li>13・口述历史权威唐德刚先生国...</li>
+	<li>14・袁伟民与体坛风云：实话实...</li>
+	<li>15・我们台湾这些年：轰动两岸...</li>
+	<li>16・畅销教辅推荐：精品套书50...</li>
+	<li>17・2010版法律硕士联考大纲75...</li>
+	<li>18・计算机新书畅销书75折抢购</li>
+	<li>19・2009年孩子最喜欢的书&gt;&gt;</li>
+	<li>20・弗洛伊德作品精选集59折</li>
+</ul>
+
+
+<script>
+    $(document).ready(function() {
+		//书讯快递循环垂直向上滚动
+        function movedome(){
+            var margintop=0;//上边距的偏移量
+            var stop=false;
+            setInterval(function(){
+                if(stop==true){
+                    return;
+                }
+                $("#express").children("li").first().animate({"margin-top":margintop--},0,function(){
+                    var $li=$(this);
+                    if(!$li.is(":animated")){//第一个li的动画结束时
+                        if(-margintop>$li.height()){
+                            $li.css("margin-top","0px").appendTo($("#express"));
+                            margintop=0;
+                        }
+                    }
+                });
+            },50);
+			//鼠标放到快递信息(ul)上时
+            $("#express").hover(function(){
+                $(this).css("cursor","pointer");
+                stop=true;//停止动画
+            },function(){
+                stop=false;//开始动画
+            });
+        }
+        movedome();
+    });
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>0-9四个不同的随机数</title>
+    <script src="js/jquery.min.js"></script>
+    <style>
+        .active{
+            background: #f00;
+        }
+    </style>
+</head>
+<body>
+    <input type="button" value="随机生成4位数" id="Button" >
+
+    <div id="0">0</div>
+    <div id="1">1</div>
+    <div id="2">2</div>
+    <div id="3">3</div>
+    <div id="4">4</div>
+    <div id="5">5</div>
+    <div id="6">6</div>
+    <div id="7">7</div>
+    <div id="8">8</div>
+    <div id="9">9</div>
+    <script>
+        function f1() {
+            var arr_4 = new Array()
+
+            function getRandom(min, max) {
+                //随机数
+                var random = Math.random() * (max - min) + min;
+                //向下取整
+                random = Math.floor(random);
+
+                if (arr_4.length < 4)							//判断数组长度
+                {
+                    for (i = 0; i <= arr_4.length; i++)				//遍历数组。
+                    {
+                        if (random == arr_4[i])					//比较随机数
+                        {
+                            break;
+                        }
+                        else {
+                            if (i == arr_4.length) {
+                                arr_4.push(random);
+                                break;
+                            }
+                        }
+                    }
+                    ;
+                    getRandom(0, 10);
+                }
+
+            }
+
+            getRandom(0, 10);		//随机取0-9
+            return arr_4
+        }
+
+        function randomStyle () {
+            $('div').removeClass('active');
+            var arr_4 = f1().join('');
+            for (var i=0;i<$('div').length;i++) {
+                arr_4.indexOf($($('div')[i]).attr('id')) >= 0 ?
+                    $($('div')[i]).addClass('active'): ''
+
+            }
+        }
+
+
+        // $('#Button').click(function () {
+        //     $('div').removeClass('active');
+        //     var arr_4 = f1().join('');
+        //     for (var i=0;i<$('div').length;i++) {
+        //         arr_4.indexOf($($('div')[i]).attr('id')) >= 0 ?
+        //             $($('div')[i]).addClass('active'): ''
+        //     }
+        //
+        // })
+
+
+        setInterval(randomStyle,1000)
+    </script>
+</body>
+</html>
