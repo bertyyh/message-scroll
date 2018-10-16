@@ -1,0 +1,66 @@
+<html>
+<head>
+    <title>自定义滚动条</title>
+    <meta charset="utf8"/>
+    <style>
+        #scrollbar{
+            width:450px;
+            height:300px;
+            margin:100px auto;
+            border: 1px #eee solid;
+            background-color:#eee;
+            display:inline-block;
+            overflow: auto;
+            -webkit-overflow-scrolling : touch;
+        }
+        /*凹槽宽度*/
+        #scrollbar::-webkit-scrollbar{
+            width:8px;
+            height:8px;
+        }
+        /*拖动条*/
+        #scrollbar::-webkit-scrollbar-thumb{
+            background-color:#ccc;
+            border-radius:6px;
+        }
+        /*背景槽*/
+        #scrollbar::-webkit-scrollbar-track{
+            background-color:#ddd;
+            border-radius:6px;
+        }
+    </style>
+</head>
+<body>
+<div id="scrollbar">
+    <code>
+        <pre>
+        #scrollbar{
+            width:200px;
+            height:200px;
+            margin:100px auto;
+            border: 1px #eee solid;
+            background-color:#eee;
+            display:inline-block;
+        }
+        /*凹槽宽度*/
+        #scrollbar::-webkit-scrollbar{
+            width:8px;
+            height:8px;
+        }
+        /*拖动条*/
+        #scrollbar::-webkit-scrollbar-thumb{
+            background-color:ragb(0,0,0,0.3);
+            border-radius:6px;
+        }
+        /*背景槽*/
+        #scrollbar::-webkit-scrollbar-track{
+            background-color:#ddd;
+            border-radius:6px;
+        }
+        </pre>
+    </code>
+    <img src="http://p2.sinaimg.cn/1134235113/180/61721259911787" alt=""> <br>
+    <img src="http://p2.sinaimg.cn/1134235113/180/61721259911787" alt="">
+</div>
+</body>
+</html>
